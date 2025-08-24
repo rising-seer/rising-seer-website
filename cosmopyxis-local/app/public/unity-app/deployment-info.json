@@ -1,0 +1,8 @@
+{
+    "productName": "Cosmopyxis",
+    "version": "1.0.0",
+    "buildDate": "2025-06-05T02:21:28Z",
+    "deploymentScript": "deploy_unity_to_website.sh",
+    "platform": "WebGL",
+    "optimized": true
+}

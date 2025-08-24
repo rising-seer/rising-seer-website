@@ -1,0 +1,42 @@
+
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+# Unity WebGL Support for Cosmopyxis
+<IfModule mod_mime.c>
+    AddType application/wasm .wasm
+    AddType application/javascript .js
+    AddType application/octet-stream .data
+    AddType application/octet-stream .mem
+    AddType application/octet-stream .unity3d
+</IfModule>
+
+# Enable gzip decompression for Unity files
+<IfModule mod_headers.c>
+    # Serve gzip compressed files with proper encoding
+    <FilesMatch "\.gz$">
+        Header set Content-Encoding gzip
+    </FilesMatch>
+    # Set correct MIME types for compressed Unity files
+    <FilesMatch "\.js\.gz$">
+        Header set Content-Type "application/javascript"
+    </FilesMatch>
+    <FilesMatch "\.wasm\.gz$">
+        Header set Content-Type "application/wasm"
+    </FilesMatch>
+    <FilesMatch "\.data\.gz$">
+        Header set Content-Type "application/octet-stream"
+    </FilesMatch>
+</IfModule>

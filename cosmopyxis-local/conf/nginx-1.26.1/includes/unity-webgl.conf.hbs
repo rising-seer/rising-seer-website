@@ -1,0 +1,53 @@
+# 🌟 COSMOPYXIS: Unity WebGL Configuration for Nginx
+# Handles pre-compressed Unity WebGL files with proper Content-Encoding headers
+# VERBOSE: Critical for Unity .gz file support
+
+# Unity WebGL pre-compressed file handling
+location ~* \.data\.gz$ {
+    gzip off;
+    add_header Content-Encoding gzip;
+    add_header Content-Type application/octet-stream;
+    add_header Cache-Control "public, max-age=31536000";
+    add_header Access-Control-Allow-Origin "*";
+    expires 1y;
+}
+
+location ~* \.js\.gz$ {
+    gzip off;
+    add_header Content-Encoding gzip;
+    add_header Content-Type application/javascript;
+    add_header Cache-Control "public, max-age=31536000";
+    add_header Access-Control-Allow-Origin "*";
+    expires 1y;
+}
+
+location ~* \.wasm\.gz$ {
+    gzip off;
+    add_header Content-Encoding gzip;
+    add_header Content-Type application/wasm;
+    add_header Cache-Control "public, max-age=31536000";
+    add_header Access-Control-Allow-Origin "*";
+    expires 1y;
+}
+
+# Unity WebGL uncompressed files
+location ~* \.wasm$ {
+    add_header Content-Type application/wasm;
+    add_header Cache-Control "public, max-age=31536000";
+    add_header Access-Control-Allow-Origin "*";
+    expires 1y;
+}
+
+location ~* \.data$ {
+    add_header Content-Type application/octet-stream;
+    add_header Cache-Control "public, max-age=31536000"; 
+    add_header Access-Control-Allow-Origin "*";
+    expires 1y;
+}
+
+# Unity WebGL loader script
+location ~* unity-app\.loader\.js$ {
+    add_header Content-Type application/javascript;
+    add_header Cache-Control "no-cache, public, must-revalidate";
+    add_header Access-Control-Allow-Origin "*";
+} 

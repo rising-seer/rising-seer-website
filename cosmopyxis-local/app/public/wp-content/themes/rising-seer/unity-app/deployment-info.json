@@ -1,0 +1,8 @@
+{
+    "productName": "Rising Seer",
+    "version": "1.0.0",
+    "buildDate": "2025-08-18T14:04:45Z",
+    "deploymentScript": "deploy_unity_to_website.sh",
+    "platform": "WebGL",
+    "optimized": true
+}

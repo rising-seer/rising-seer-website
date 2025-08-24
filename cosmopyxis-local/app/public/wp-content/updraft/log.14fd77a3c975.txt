@@ -1,0 +1,35 @@
+0000.000 (0) Opened log file at time: Wed, 04 Jun 2025 16:22:35 +0000 on https://cosmopyxis.vision
+0000.001 (0) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.25.6 WP: 6.8.1 PHP: 8.1.32 (litespeed, Linux m12.wpx.net 4.18.0-553.51.1.el8_10.x86_64 #1 SMP Wed Apr 30 20:24:04 UTC 2025 x86_64) MySQL: 10.5.29-MariaDB (max packet size=67108864) WPLANG: en_US Server: LiteSpeed safe_mode: 0 max_execution_time: 900 memory_limit: 384M (used: 4.6M | 6M) multisite: N openssl: OpenSSL 1.1.1k  FIPS 25 Mar 2021 mcrypt: N LANG:  WP Proxy: disabled ZipArchive::addFile: Y
+0000.002 (0) Free space on disk containing Updraft's temporary directory: 886509.3 MB
+0000.003 (0) Tasks: Backup files: 1 (schedule: unset) Backup DB: 1 (schedule: unset)
+0000.004 (0) Semaphore (fd, wp_options) being initialised
+0000.006 (0) Requesting semaphore lock (fd) (apparently not via scheduler)
+0000.006 (0) Set semaphore last lock (fd) time to 2025-06-04 16:22:35
+0000.007 (0) Semaphore lock (fd) complete
+0000.008 (0) Backup run: resumption=0, nonce=14fd77a3c975, file_nonce=14fd77a3c975 begun at=1749054155 (0s ago), job type=backup
+0000.009 (0) Scheduling a resumption (1) after 300 seconds (1749054455) in case this run gets aborted
+0300.039 (1) Opened log file at time: Wed, 04 Jun 2025 16:27:36 +0000 on https://cosmopyxis.vision
+0300.040 (1) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.25.6 WP: 6.8.1 PHP: 8.1.32 (litespeed, Linux m12.wpx.net 4.18.0-553.51.1.el8_10.x86_64 #1 SMP Wed Apr 30 20:24:04 UTC 2025 x86_64) MySQL: 10.5.29-MariaDB (max packet size=67108864) WPLANG: en_US Server: LiteSpeed safe_mode: 0 max_execution_time: 900 memory_limit: 384M (used: 4M | 6M) multisite: N openssl: OpenSSL 1.1.1k  FIPS 25 Mar 2021 mcrypt: N LANG:  WP Proxy: disabled ZipArchive::addFile: Y
+0300.040 (1) PHP event: Could not ask cPanel about disk space (open_basedir) - this is not an error (line 420, wp-content/plugins/updraftplus/class-updraftplus.php)
+0300.041 (1) Free space on disk containing Updraft's temporary directory: 886346.9 MB
+0300.042 (1) Requesting backup semaphore lock (14fd77a3c975)
+0300.043 (1) [Debug] Lock option (updraft_lock_14fd77a3c975, wp_options) was created in the database
+0300.043 (1) [Info] Lock (updraft_lock_14fd77a3c975, wp_options) acquired after initialising the database
+0300.044 (1) Backup run: resumption=1, nonce=14fd77a3c975, file_nonce=14fd77a3c975 begun at=1749054155 (301s ago), job type=backup
+0300.044 (1) Scheduling a resumption (2) after 300 seconds (1749054756) in case this run gets aborted
+0602.233 (2) Opened log file at time: Wed, 04 Jun 2025 16:32:38 +0000 on https://cosmopyxis.vision
+0602.233 (2) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.25.6 WP: 6.8.1 PHP: 8.1.32 (litespeed, Linux m12.wpx.net 4.18.0-553.51.1.el8_10.x86_64 #1 SMP Wed Apr 30 20:24:04 UTC 2025 x86_64) MySQL: 10.5.29-MariaDB (max packet size=67108864) WPLANG: en_US Server: LiteSpeed safe_mode: 0 max_execution_time: 900 memory_limit: 384M (used: 4M | 6M) multisite: N openssl: OpenSSL 1.1.1k  FIPS 25 Mar 2021 mcrypt: N LANG:  WP Proxy: disabled ZipArchive::addFile: Y
+0602.234 (2) PHP event: Could not ask cPanel about disk space (open_basedir) - this is not an error (line 420, wp-content/plugins/updraftplus/class-updraftplus.php)
+0602.235 (2) Free space on disk containing Updraft's temporary directory: 886458.1 MB
+0602.237 (2) Requesting backup semaphore lock (14fd77a3c975)
+0602.238 (2) [Info] Lock (updraft_lock_14fd77a3c975, wp_options) acquired
+0602.239 (2) Backup run: resumption=2, nonce=14fd77a3c975, file_nonce=14fd77a3c975 begun at=1749054155 (603s ago), job type=backup
+0602.240 (2) Scheduling a resumption (3) after 300 seconds (1749055058) in case this run gets aborted
+0903.339 (3) Opened log file at time: Wed, 04 Jun 2025 16:37:39 +0000 on https://cosmopyxis.vision
+0903.342 (3) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.25.6 WP: 6.8.1 PHP: 8.1.32 (litespeed, Linux m12.wpx.net 4.18.0-553.51.1.el8_10.x86_64 #1 SMP Wed Apr 30 20:24:04 UTC 2025 x86_64) MySQL: 10.5.29-MariaDB (max packet size=67108864) WPLANG: en_US Server: LiteSpeed safe_mode: 0 max_execution_time: 900 memory_limit: 384M (used: 4M | 6M) multisite: N openssl: OpenSSL 1.1.1k  FIPS 25 Mar 2021 mcrypt: N LANG:  WP Proxy: disabled ZipArchive::addFile: Y
+0903.342 (3) PHP event: Could not ask cPanel about disk space (open_basedir) - this is not an error (line 420, wp-content/plugins/updraftplus/class-updraftplus.php)
+0903.343 (3) Free space on disk containing Updraft's temporary directory: 886421.3 MB
+0903.344 (3) Requesting backup semaphore lock (14fd77a3c975)
+0903.344 (3) [Info] Lock (updraft_lock_14fd77a3c975, wp_options) acquired
+0903.345 (3) Backup run: resumption=3, nonce=14fd77a3c975, file_nonce=14fd77a3c975 begun at=1749054155 (904s ago), job type=backup
+0903.346 (3) Scheduling a resumption (4) after 300 seconds (1749055359) in case this run gets aborted

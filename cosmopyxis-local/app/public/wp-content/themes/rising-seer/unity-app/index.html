@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Rising Seer</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+
+    <!-- -------- GA4 TAG  -------- -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EK35DGJ7XQ"></script>
+    <script>
+      const GA_MEASUREMENT_ID = "G-EK35DGJ7XQ"; // Rising Seer Web stream
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+
+      /* Unity calls this via WebGLGA4Bridge -> gtagEvent(name,json) */
+      function gtagEvent(name,json){
+        try{ const obj = JSON.parse(json); gtag('event', name, obj); }
+        catch(e){ console.error('gtagEvent parse error',e); }
+      }
+    </script>
+    <!-- --------------------------- -->
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+    <style>
+      /* Simple fullscreen canvas */
+      html,body{ margin:0; height:100%; background:#000; overflow:hidden; }
+      #unity-canvas{ width:100%; height:100%; background: #000; }
+
+      /* FORCE text selection in Unity's development overlay - NUCLEAR OPTION */
+      *, *::before, *::after { 
+        user-select: text !important; 
+        -webkit-user-select: text !important; 
+        -moz-user-select: text !important;
+        -ms-user-select: text !important;
+      }
+      
+      /* Target Unity's specific overlay elements */
+      canvas, div, span, p, pre, code { 
+        user-select: text !important; 
+        -webkit-user-select: text !important; 
+      }
+      
+      /* Override any Unity CSS that might disable selection */
+      .unity-mobile, .unity-desktop, #unity-container, #unity-canvas {
+        user-select: text !important;
+        -webkit-user-select: text !important;
+      }
+      
+      /* Additional targeting for Unity's console/error messages */
+      #unity-warning *, .unity-error *, .unity-console * {
+        user-select: text !important;
+        -webkit-user-select: text !important;
+        -moz-user-select: text !important;
+        -ms-user-select: text !important;
+        cursor: text !important;
+      }
+    </style>
+        
+        <!-- Rising Seer Branding -->
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+        <link rel="manifest" href="manifest.json">
+        
+        <!-- Open Graph / Social Media Preview -->
+        <meta property="og:title" content="Rising Seer - AI Powered Astrology">
+        <meta property="og:description" content="Discover your cosmic blueprint with AI-powered astrological insights">
+        <meta property="og:image" content="https://risingseer.com/app/open-graph.png">
+        <meta property="og:url" content="https://risingseer.com/app/">
+        <meta property="og:type" content="website">
+        
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Rising Seer - AI Powered Astrology">
+        <meta name="twitter:description" content="Discover your cosmic blueprint with AI-powered astrological insights">
+        <meta name="twitter:image" content="https://risingseer.com/app/open-graph.png">
+        </head>
+<body>
+    <div id="unity-container" class="unity-desktop">
+        <canvas id="unity-canvas" width="1080" height="1920"></canvas>
+        <div id="unity-loading-bar">
+            <div id="unity-logo"></div>
+            <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full"></div>
+            </div>
+        </div>
+        <div id="unity-warning"> </div>
+        <div id="unity-footer">
+            <div id="unity-webgl-logo"></div>
+            <div id="unity-fullscreen-button"></div>
+            <div id="unity-build-title">Rising Seer</div>
+        </div>
+    </div>
+
+    <!-- Firebase Web SDK placeholder for MarksAssets plugin -->
+
+    <!-- Firebase Configuration for MarksAssets FirebaseWebGL -->
+    <script>
+        window.firebaseConfig = JSON.parse(`{"apiKey":"AIzaSyBXnb5Z3vhMU_1CYFuvVlqDx_3_dmvPB3E","authDomain":"rising-seer.firebaseapp.com","projectId":"rising-seer","storageBucket":"rising-seer.appspot.com","messagingSenderId":"123456789","appId":"1:123456789:web:abcdef123456789","measurementId":"G-EK35DGJ7XQ"}`);
+    </script>
+
+    <script>
+        // Force enable text selection
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove any selectstart prevention
+            document.onselectstart = null;
+            document.onmousedown = null;
+            document.ondragstart = null;
+            
+            // Force enable selection on all elements
+            const forceSelection = () => {
+                const allElements = document.querySelectorAll('*');
+                allElements.forEach(el => {
+                    el.style.userSelect = 'text';
+                    el.style.webkitUserSelect = 'text';
+                    el.style.mozUserSelect = 'text';
+                    el.style.msUserSelect = 'text';
+                });
+            };
+            
+            // Apply immediately and after Unity loads
+            forceSelection();
+            setTimeout(forceSelection, 1000);
+            setTimeout(forceSelection, 3000);
+            setTimeout(forceSelection, 5000);
+            
+            // Monitor for new elements
+            const observer = new MutationObserver(forceSelection);
+            observer.observe(document.body, { childList: true, subtree: true });
+        });
+        
+        var container = document.querySelector("#unity-container");
+        var canvas = document.querySelector("#unity-canvas");
+        var loadingBar = document.querySelector("#unity-loading-bar");
+        var progressBarFull = document.querySelector("#unity-progress-bar-full");
+        var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+        var warningBanner = document.querySelector("#unity-warning");
+
+        function unityShowBanner(msg, type) {
+            function updateBannerVisibility() {
+                warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+            }
+            var div = document.createElement('div');
+            div.innerHTML = msg;
+            warningBanner.appendChild(div);
+            if (type == 'error') div.style = 'background: red; padding: 10px;';
+            else {
+                if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+                setTimeout(function() {
+                    warningBanner.removeChild(div);
+                    updateBannerVisibility();
+                }, 5000);
+            }
+            updateBannerVisibility();
+        }
+
+        var buildUrl = "/wp-content/themes/rising-seer/unity-app/Build";
+        var loaderUrl = buildUrl + "/unity-app.loader.js";
+            
+            // Browser detection for Safari vs Chrome/others and local dev (.local)
+            var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            var isLocalDev = location.hostname.endsWith(".local");
+            console.log("[Unity] Browser detected - Safari:", isSafari, "LocalDev:", isLocalDev, "UserAgent:", navigator.userAgent);
+            
+            // Use compressed files unless Safari or local dev
+            var useCompressed = !(isSafari || isLocalDev);
+            var config = {
+                dataUrl: buildUrl + (useCompressed ? "/unity-app.data.gz" : "/unity-app.data"),
+                frameworkUrl: buildUrl + (useCompressed ? "/unity-app.framework.js.gz" : "/unity-app.framework.js"),
+                codeUrl: buildUrl + (useCompressed ? "/unity-app.wasm.gz" : "/unity-app.wasm"),
+                streamingAssetsUrl: "StreamingAssets",
+                companyName: "Rising Seer",
+                productName: "Rising Seer",
+                productVersion: "0.0.1",
+                showBanner: unityShowBanner,
+            };
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            var meta = document.createElement('meta');
+            meta.name = 'viewport';
+            meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+            document.getElementsByTagName('head')[0].appendChild(meta);
+            container.className = "unity-mobile";
+            canvas.className = "unity-mobile";
+            // 🩹 iOS Safari TouchEnd Loss Fix - reroute touchend back to canvas if it bubbles elsewhere
+            (function() {
+                const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+                if (!isIOS || !isSafari) return;
+                const canvasEl = document.getElementById('unity-canvas');
+                if (!canvasEl) return;
+                console.log('[Unity Template] 🩹 TouchEnd Loss Fix active');
+                let touchStartedOnCanvas = false;
+                canvasEl.addEventListener('touchstart', () => { touchStartedOnCanvas = true; }, { passive: true });
+                document.body.addEventListener('touchend', (ev) => {
+                    if (!touchStartedOnCanvas) return;
+                    touchStartedOnCanvas = false;
+                    // If the touchend target isn't the canvas, synthesise one so Unity gets PointerUp
+                    if (ev.target !== canvasEl) {
+                        const clone = new Event('pointerup', { bubbles: true, cancelable: true });
+                        canvasEl.dispatchEvent(clone);
+                    }
+                }, { passive: true });
+            })();
+
+        } else {
+            canvas.style.width = "1080px";
+            canvas.style.height = "1920px";
+        }
+
+        loadingBar.style.display = "block";
+
+        var script = document.createElement("script");
+        script.src = loaderUrl;
+        script.onload = () => {
+            createUnityInstance(canvas, config, (progress) => {
+                progressBarFull.style.width = 100 * progress + "%";
+            }).then((unityInstance) => {
+                // Store unity instance globally for Firebase bridges
+                window.unityInstance = unityInstance;
+                
+                // Fix AudioContext warning - enable audio on first user interaction
+                function enableAudio() {
+                    if (unityInstance && unityInstance.Module && unityInstance.Module.resumeMainLoop) {
+                        console.log('[Unity Template] Enabling audio context on user interaction');
+                        try {
+                            // Resume Unity's audio context
+                            if (window.AudioContext || window.webkitAudioContext) {
+                                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                                if (audioContext.state === 'suspended') {
+                                    audioContext.resume();
+                                }
+                            }
+                        } catch(e) {
+                            console.log('[Unity Template] Audio context resume failed:', e);
+                        }
+                    }
+                    // Remove the click listener after first interaction
+                    document.removeEventListener('click', enableAudio);
+                    document.removeEventListener('keydown', enableAudio);
+                }
+                
+                // Add listeners for first user interaction
+                document.addEventListener('click', enableAudio);
+                document.addEventListener('keydown', enableAudio);
+                
+                // Hide loading screen
+                loadingBar.style.display = "none";
+                fullscreenButton.onclick = () => {
+                    unityInstance.SetFullscreen(1);
+                };
+                
+                console.log('🎮 Unity instance ready for Rising Seer');
+            }).catch((message) => {
+                alert(message);
+            });
+        };
+        
+        document.body.appendChild(script);
+    </script>
+</body>
+</html> 

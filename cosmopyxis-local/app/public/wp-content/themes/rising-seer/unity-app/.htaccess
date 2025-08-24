@@ -1,0 +1,13 @@
+# Minimal Unity WebGL Configuration
+<IfModule mod_mime.c>
+    AddType application/wasm .wasm
+    AddType application/javascript .js
+    AddType application/octet-stream .data
+</IfModule>
+
+# Force Content-Encoding for .gz files
+<FilesMatch "\.(data|wasm|js|framework\.js)\.gz$">
+    <IfModule mod_headers.c>
+        Header set Content-Encoding gzip
+    </IfModule>
+</FilesMatch>

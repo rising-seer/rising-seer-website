@@ -1,0 +1,32 @@
+{
+  "project_info": {
+    "project_number": "581063212392",
+    "project_id": "rising-seer",
+    "storage_bucket": "rising-seer.firebasestorage.app",
+    "database_url": "https://rising-seer-default-rtdb.firebaseio.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581063212392:android:8aac241844ec7ee91ceadd",
+        "android_client_info": {
+          "package_name": "com.risingseer.app"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXnb5Z3vhMU_1CYFuvVlqDx_3_dmvPB3E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 0
+        },
+        "appinvite_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
